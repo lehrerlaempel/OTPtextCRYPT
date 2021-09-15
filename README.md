@@ -17,9 +17,7 @@ Andererseits ist das Programm [Freie Software](https://fsfe.org/freesoftware/fre
 ...und da es ein recht simples Tool in der weit verbreiteten Sprache Python ist, hat man (anders als bei dem komplizierten Quelltext moderner OpenSource Crpyto-Messenger) auch als interessierter Laie eine realistische Chance, den Quelltext auch tatsächlich zu verstehen.
 
 # Installationsanleitung
-Sie müssen das Programm nicht installieren. Sie können einfach eine Version von OTPtextCRYPT als PythonSkript hier herunterladen, entpacken und direkt ausführen:
-
-- [OTPtextCRYPT v4.0](https://github.com/lehrerlaempel/OTPtextCRYPT/archive/v4.0.zip)
+Sie müssen das Programm nicht installieren. Sie können einfach [hier](https://github.com/lehrerlaempel/OTPtextCRYPT/releases) die neuste Version von OTPtextCRYPT als PythonSkript hier herunterladen, entpacken und direkt ausführen.
 
 Sollten Sie nicht wissen, wie Sie ein PythonSkript (*.py) ausführen können, finden Sie [hier](https://github.com/lehrerlaempel/pythonstarten) eine kurze Anleitung.
 
