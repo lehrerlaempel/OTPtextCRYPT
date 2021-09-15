@@ -1,7 +1,5 @@
-# Über das Programm
-OTPtextCrypt - Simple vertrauenswürdige Textverschlüsselung
- 
-Aber der Reihe nach:
+# OTPtextCrypt
+Simple vertrauenswürdige Textverschlüsselung
 
 OTPtextCRYPT erstellt bei der ersten Verwendung zunächst eine einzigartige Datenbank mit vielen zufallsgenerierten Schlüsseln.
 
@@ -9,19 +7,19 @@ Diese können dann unter den Kommunikationspartnern ausgetauscht werden (indem m
 
 Von da an können beide Seiten sicher miteinander kommunizieren, indem sie ihre Nachrichten mit dem Tool verschlüsseln. Wie diese dann übermittelt werden, ist egal: Man muss dem Weg schließlich nicht mehr vertrauen, da niemand das Chiffrat brechen kann, der nicht über den passenden Schlüssel verfügt.
 
-# Vertrauenswürdig
+## Vertrauenswürdig
 Einerseits verwendet das Programm zum Verschlüsseln sogenannte [One-Time-Pads](https://de.wikipedia.org/wiki/One-Time-Pad), auch Einmalverschlüsselung genannt. Bei diesen ist mathematisch bewiesen, dass kein Angreifer das Chifrat brechen kann, egal über wie viel Rechenleistung er verfügt.
 
 Andererseits ist das Programm [Freie Software](https://fsfe.org/freesoftware/freesoftware.de.html). Jede:r hat also die Möglichkeit, sich den Quelltext anzuschauen und nachzuvollziehen, wie das Programm genau funktioniert. 
 
 ...und da es ein recht simples Tool in der weit verbreiteten Sprache Python ist, hat man (anders als bei dem komplizierten Quelltext moderner OpenSource Crpyto-Messenger) auch als interessierter Laie eine realistische Chance, den Quelltext auch tatsächlich zu verstehen.
 
-# Installationsanleitung
+## Installationsanleitung
 Sie müssen das Programm nicht installieren. Sie können einfach [hier](https://github.com/lehrerlaempel/OTPtextCRYPT/releases) die neuste Version von OTPtextCRYPT als PythonSkript hier herunterladen, entpacken und direkt ausführen.
 
 Sollten Sie nicht wissen, wie Sie ein PythonSkript (*.py) ausführen können, finden Sie [hier](https://github.com/lehrerlaempel/pythonstarten) eine kurze Anleitung.
 
-# Ein Beispiel
+## Ein Beispiel
 Alice und Bob sind Geschäftspartner, die gerne sicher kommunizieren möchten. Also läd sich Alice von dieser Seite OTPtextCrypt herunter, startet das Programm und lässt es einen neuen Satz Schlüssel erstellen. Diese speichert das Programm in einer Datenbank mit dem Namen "OTPtextCRYPT.db" in dem Ordner, in dem auch das Script gespeichert ist.
 
 Alice kopiert das Skipt (OTPtextCRYPT.py) und die Datenbank auf einen USB-Stick und gibt diese beim nächsten Treffen Bob. Diser kopiert die Daten auf seinen PC. Nun können die beiden sicher kommunizieren in dem beruhigenden Wissen, dass niemand ihre Texte angreifen und entziffern kann - egal wie viel Rechenleistung und KnowHow der Angreifer investiert.
@@ -38,10 +36,10 @@ Dieses schickt Bob nun an seine Freundin Alice. Per E-Mail, Messenger, Social Me
 
 Alice kopiert das erhaltene Chiffrat in ihr Tool und bekommt Bobs Nachricht angezeigt. 
 
-# Datenschutz
+## Datenschutz
 OPTtextCRYPT erstellt eine lokale Datenbank mit Schlüsseln. Punkt. OPTtextCRYPT telefoniert nicht nach Hause und sammelt keine Daten. Es sendet und emfpängt auch keinerlei Daten über das Internet. Man kann die Software daher problemlos offline betreiben und die Chiffrate auf einem beliebigen Weg übermitteln: Übers Internet per Mail oder Messenger... oder auch von Hand mit Zitronensäuse auf ein Blatt Papier geschrieben.
 
-# Freie Software
+## Freie Software
 OTPtextCRYPT ist freie Software. Frei bezieht sich übrigens auf Freiheit, nicht (nur) auf den Preis.
 
 Freie Software garantiert Ihnen die die vier grundlegenden Freiheiten, diese Software zu `verwenden`, zu `verstehen`, zu `verbreiten` und zu `verbessern`.
@@ -52,5 +50,5 @@ Sie können OTPtextCRYPT also unter den Bedingungen der von der Free Software Fo
 
 OTPtextCRYPT wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR, sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten. Eine Kopie der GNU General Public License finden Sie [hier](https://www.gnu.org/licenses/licenses.de.html).
 
-# Danksagung
+## Danksagung
 Danke an Jörg Drobick für [dessen faszinierende Website](http://scz.bplaced.net/), dessen Unterseite zu [Manuelle Chiffrierverfahren](http://scz.bplaced.net/m.html) faszinierende Einblicke in die Geschichte klassischer Kryptoverfahren ermöglicht.
