@@ -1,5 +1,6 @@
-"""
+# -*- coding: utf-8 -*-
 
+"""
 OTPtextCRYPT
 
 Ein Prjekt von Lehrer Lämpel
@@ -10,13 +11,12 @@ https://lehrerlaempel.github.io/OTPtextCRYPT/
 
 Lizenz: GNU/GPL v3
 
-Stand: 15.09.2021
-
+Stand: 04.10.2021
 """
 
 logo = r'''
  ^ ^  OTPtextCRYPT
-(O,O)         v4.0
+(O,O)         v4.2
 (   )
 -"-"--------------
 '''
@@ -97,7 +97,8 @@ def wurmexport(wurmanzahl, wurmlaenge):
         pickle.dump(wuermer, datenbank)
    
     print('Fertig!')
-        
+
+
 def wurmimport():
     '''
     Öffnet die Datei "OTPtextCRYPT.db".
@@ -107,7 +108,6 @@ def wurmimport():
     
     with open('OTPtextCRYPT.db', 'rb') as datenbank:
         wuermer = pickle.load(datenbank)
-        
         
     return wuermer
 
@@ -127,6 +127,7 @@ def klartext2numbers(klartext):
             zahlenliste.append(int(ziffer))
             
     return zahlenliste
+
 
 def numbers2klartext(einzelzahlenliste):
     """
@@ -153,9 +154,9 @@ def numbers2klartext(einzelzahlenliste):
     return klartext
 
         
-def RandomWurmUndZuschnitt(notwendigeLaenge):
+def RandomWurm():
     """
-    Wählt zufällig einen Wurm aus und passt die Länge an
+    Wählt zufällig einen Wurm aus 
     gibt die Wurmnummer als int zurück
     """
     wuermer = wurmimport()
@@ -163,13 +164,18 @@ def RandomWurmUndZuschnitt(notwendigeLaenge):
     
     wurmnummer = wuermer.index(wurm)
     
-    return wurm[:notwendigeLaenge], wurmnummer
+    return wurm, wurmnummer
+
 
 def number2cypher(klarzahlen, keyzahlen, wurmnummer):
     """
     Verschlüsselt eine Liste klarzahlen der Liste keyzahlen
     Ausgabe: Cypher als String inkl. vorangestellte WurmID
     """
+
+    # sicherstellen, dass key lang genug ist
+    while len(klarzahlen) > len(keyzahlen):
+        keyzahlen += keyzahlen
 
     # Zahlen (klarzahlen) vom Schlüssel (key) abziehen
     cypher = []
@@ -216,6 +222,10 @@ def cypher2number(cypher_string):
     
     # Chiffrat in Liste
     cypher = [int(i) for i in chiffrat]
+        
+    # Prüfen, ob key lang genug ist
+    while len(cypher) > len(key):
+        key += key
 
     numbers = []
     for i in range(len(cypher)):
@@ -224,28 +234,13 @@ def cypher2number(cypher_string):
             h += 10
         numbers.append(h)
         
-    return numbers
+    return numbers   
+
 
 """
                 Ab hier dann die Programm-Logik
 """
-
-
-def ErsterStartTest():
-    """
-    Prüft, ob eine Datenbank vorhanden ist.
-    Wenn nicht, wird eine angelegt.
-    """
-    # Prüfen, ob DB angelegt ist
-    if os.path.exists("OTPtextCRYPT.db") is False:
-        print('Es wurde keine Datenbank gefunden!')
-        
-        wurmanzahl = int(input('Wie viele Würmer sollen erstellt werden?' +\
-                               '\nNummer eingeben (mind. 1000): '))
-        wurmlaenge = int(input('Wie lang sollen diese sein?\n' +\
-                               'Nummer eingeben (mind. 1000): '))
-        wurmexport(wurmanzahl, wurmlaenge)
-        
+      
 
 def verschluesselung(klartext):
     '''
@@ -258,7 +253,7 @@ def verschluesselung(klartext):
     inziffern = klartext2numbers(klartext)
     # print('Klartext', inziffern)
     
-    key, keynummer = RandomWurmUndZuschnitt(len(inziffern))
+    key, keynummer = RandomWurm()
     # print('key: ', key)
     # print('keynummer: ', keynummer)
     
@@ -283,65 +278,95 @@ def entschluesselung(chiffrat):
     return klartext
 
 
-# # Test
-# a = verschluesselung('Hallo, ich bin ein Test.')
-# b = entschluesselung(a)
+def cli_programmstart():
+    # Beim ersten Start Wörterbuch anlegen
+    while os.path.exists("OTPtextCRYPT.db") is False:
+        try:
+            print('\nEs wurde keine Datenbank gefunden!')
+            
+            text1 = 'Wie viele Würmer sollen erstellt werden?\n' +\
+                    'Nummer eingeben (mind. 1000): '
+            text2 = 'Wie lang sollen diese sein?\n' +\
+                    'Nummer eingeben (mind. 1000): '
+            
+            wurmanzahl = int(input(text1))
+            wurmlaenge = int(input(text2))
+            
+            wurmexport(wurmanzahl, wurmlaenge)
+            
+        except Exception as error:
+            print()
+            print(error)
+            print('So soll das nicht aussehen...')
+            print('Neuer Versuch!')
 
-# print(a)
-# print(b)
 
-"""
-                Ab hier die CLI-Version
-"""
+'''
+        -------------------------
+        Ab hier der Programmstart
+        -------------------------
+'''
 
-print()
-print(logo)
 
-time.sleep(1)
-
-# StartUpRoutine
-ErsterStartTest()
-
-wahlmoeglichkeiten = '''Bitte wählen Sie aus folgenden Optionen:
+if __name__ == '__main__':
+    
+    print()
+    print(logo)
+    
+    time.sleep(1)
+    
+    cli_programmstart()
+    
+    wahlmoeglichkeiten = '''Bitte wählen Sie aus folgenden Optionen:
     [1] Verschlüsselung
     [2] Entschlüsselung
     [3] Programm beenden
-
-Ihre Auswahl: '''
-
-nutzereingabe = 0
-
-while nutzereingabe != 3:
-    try:
-        nutzereingabe = int(input(wahlmoeglichkeiten))
-    except:
-        nutzereingabe = 9
     
-    # Verschlüsselung
-    if nutzereingabe == 1:
-        klartext = input('Bitte geben Sie den zu verschlüsselnden Text ein:\n')
-        print('\nMoment, das kann kurz dauern...')
-        chiffrat = verschluesselung(klartext)
-        print(f'\nVerschlüsselt ergibt das:\n{chiffrat}')
+Ihre Auswahl: '''    
+
+    # Ab hier die Programmschleife
+    nutzereingabe = 0
+    while nutzereingabe != 3:
+        try:
+            nutzereingabe = int(input(wahlmoeglichkeiten))
+        except:
+            nutzereingabe = 9
         
-        input('Enter drücken, um Fortzufahren...')
-    
-    # Entschlüsselung
-    elif nutzereingabe == 2:
-        chiffrat = input('Bitte geben Sie ein Chiffrat ein:\n')
-        print('\nMoment, das kann kurz dauern...')
-        klartext = entschluesselung(chiffrat)
-        print(f'\nEntschlüsselt ergibt das:\n{klartext}')
+        # Verschlüsselung
+        if nutzereingabe == 1:
+            try:
+                text = 'Bitte geben Sie den zu verschlüsselnden Text ein:\n'
+                klartext = input(text)
+                print('\nMoment, das kann kurz dauern...')
+                chiffrat = verschluesselung(klartext)
+                print(f'\nVerschlüsselt ergibt das:\n{chiffrat}')
+                
+            except Exception as error:
+                print(error)
+                print('So soll das nicht aussehen...')
+            
+            input('Enter drücken, um Fortzufahren...')
         
-        input('Enter drücken, um Fortzufahren...')    
-    # Beenden
-    elif nutzereingabe == 3:
-        print('\nOTPtextCRYPT ist freie Software.\n' + \
-              'Frei bezieht sich übrigens auf Freiheit, nicht (nur) auf den Preis.')
-        print('\nDas Programm wird in 5 Sekunden beendet.\nAuf Wiedersehen!\n')
-        time.sleep(5)
-        break
-    
-    else:
-        print('\nDas hat nicht geklappt.\nBitte wiederholen Sie Ihre Eingabe.')
-        input('Enter drücken, um Fortzufahren...')
+        # Entschlüsselung
+        elif nutzereingabe == 2:
+            try:
+                chiffrat = input('Bitte geben Sie ein Chiffrat ein:\n')
+                print('\nMoment, das kann kurz dauern...')
+                klartext = entschluesselung(chiffrat)
+                print(f'\nEntschlüsselt ergibt das:\n{klartext}')
+                
+            except Exception as error:
+                print(error)
+                print('So soll das nicht aussehen...')
+            
+            input('Enter drücken, um Fortzufahren...')   
+            
+        # Beenden
+        elif nutzereingabe == 3:
+            print('\nDas Programm wird in 5 Sekunden beendet.\nAuf Wiedersehen!\n')
+            time.sleep(5)
+            break
+        
+        else:
+            print('\nDas hat nicht geklappt.\nBitte wiederholen Sie Ihre Eingabe.')
+            input('Enter drücken, um Fortzufahren...')
