@@ -1,4 +1,4 @@
-# OTPtextCrypt
+# OTPtextCrypt v4.2
 Simple vertrauenswürdige Textverschlüsselung
 
 OTPtextCRYPT erstellt bei der ersten Verwendung zunächst eine einzigartige Datenbank mit vielen zufallsgenerierten Schlüsseln.
@@ -8,7 +8,7 @@ Diese können dann unter den Kommunikationspartnern ausgetauscht werden (indem m
 Von da an können beide Seiten sicher miteinander kommunizieren, indem sie ihre Nachrichten mit dem Tool verschlüsseln. Wie diese dann übermittelt werden, ist egal: Man muss dem Weg schließlich nicht mehr vertrauen, da niemand das Chiffrat brechen kann, der nicht über den passenden Schlüssel verfügt.
 
 ## Vertrauenswürdig
-Einerseits verwendet das Programm zum Verschlüsseln sogenannte [One-Time-Pads](https://de.wikipedia.org/wiki/One-Time-Pad), auch Einmalverschlüsselung genannt. Bei diesen ist mathematisch bewiesen, dass kein Angreifer das Chifrat brechen kann, egal über wie viel Rechenleistung er verfügt.
+Kennen Sie sogenannte [One-Time-Pads](https://de.wikipedia.org/wiki/One-Time-Pad), auch Einmalverschlüsselung genannt? Bei diesen ist mathematisch bewiesen, dass kein Angreifer das Chifrat brechen kann, egal über wie viel Rechenleistung er verfügt. Wir haben diese Handschlüssel-Methode aus dem kalten Krieg mit etwas Python ins 21. Jahrhundert katapultiert :-)
 
 Andererseits ist das Programm [Freie Software](https://fsfe.org/freesoftware/freesoftware.de.html). Jede:r hat also die Möglichkeit, sich den Quelltext anzuschauen und nachzuvollziehen, wie das Programm genau funktioniert. 
 
@@ -39,6 +39,13 @@ Alice kopiert das erhaltene Chiffrat in ihr Tool und bekommt Bobs Nachricht ange
 ## Datenschutz
 OPTtextCRYPT erstellt eine lokale Datenbank mit Schlüsseln. Punkt. OPTtextCRYPT telefoniert nicht nach Hause und sammelt keine Daten. Es sendet und emfpängt auch keinerlei Daten über das Internet. Man kann die Software daher problemlos offline betreiben und die Chiffrate auf einem beliebigen Weg übermitteln: Übers Internet per Mail oder Messenger... oder auch von Hand mit Zitronensäuse auf ein Blatt Papier geschrieben.
 
+## OTPfileCRYPT
+In dem heruntergeladenen Archiv finden Sie neben dem oben beschriebenen OTPfileCRYPT auch eine zweite Datei mit dem Namen OTPfileCRYPT. Diese nutzt die Algorithmen von OTPtextCRYPT, verschlüsselt aber ganze Text-Dateien. Wenn man das Programm startet, legt es bei Bedarf eine Schlüsseldatenbank und die zwei Ordner `decrypt` sowie `encrypt` an. Von da an verschlüsselt es bei jedem Programmstart automatisch alle *.txt-Dateien im encrypt Ordner und entschlüsselt alle von OTPfileCRYPT verschlüsselten Daten aus dem Ordner decrypt. 
+
+Und das beste: Auch die Dateinamen werden verschlüsselt :-)
+
+Wer lange Beispiel-TXT-Daten zum Testen sucht, kann sich [hier](https://www.gutenberg.org/ebooks/2499.txt.utf-8) und [hier](https://www.gutenberg.org/ebooks/12108.txt.utf-8) deutsche Bücher als txt-File aus dem [Project Gutenberg](https://www.gutenberg.org/) herunterladen. (Funktioniert leider nicht mit einer deutschen IP-Adresse.)
+
 ## Freie Software
 OTPtextCRYPT ist freie Software. Frei bezieht sich übrigens auf Freiheit, nicht (nur) auf den Preis.
 
@@ -51,4 +58,4 @@ Sie können OTPtextCRYPT also unter den Bedingungen der von der Free Software Fo
 OTPtextCRYPT wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR, sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten. Eine Kopie der GNU General Public License finden Sie [hier](https://www.gnu.org/licenses/licenses.de.html).
 
 ## Danksagung
-Danke an Jörg Drobick für [dessen faszinierende Website](http://scz.bplaced.net/), dessen Unterseite zu [Manuelle Chiffrierverfahren](http://scz.bplaced.net/m.html) faszinierende Einblicke in die Geschichte klassischer Kryptoverfahren ermöglicht.
+Danke an Jörg Drobick für [dessen faszinierende Website](http://scz.bplaced.net/), deren Unterseite zu [Manuelle Chiffrierverfahren](http://scz.bplaced.net/m.html) faszinierende Einblicke in die Geschichte klassischer Kryptoverfahren ermöglicht.
