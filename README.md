@@ -46,6 +46,11 @@ Und das beste: Auch die Dateinamen werden verschlüsselt :-)
 
 Wer lange Beispiel-TXT-Daten zum Testen sucht, kann sich [hier](https://www.gutenberg.org/ebooks/2499.txt.utf-8) und [hier](https://www.gutenberg.org/ebooks/12108.txt.utf-8) deutsche Bücher als txt-File aus dem [Project Gutenberg](https://www.gutenberg.org/) herunterladen. (Funktioniert leider nicht mit einer deutschen IP-Adresse.)
 
+## Anmerkung
+Diese Software ist explizit nicht für den realen Einsatz bzw. die tatsächliche Übermittlung sensibler Informationen gedacht! 
+
+Diese Software dient vielmehr dem Zweck, ein anschauliches und funktionierendes OTP-Beispiel zu geben, anhand dessen man zeigen kann, wieso wir theoretisch nicht-knackbare Verschlüsselung im IT-Alltag dann doch nicht verwenden.
+
 ## Freie Software
 OTPtextCRYPT ist freie Software. Frei bezieht sich übrigens auf Freiheit, nicht (nur) auf den Preis.
 
